@@ -36,3 +36,17 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
+- task: DownloadBuildArtifacts@1
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    artifactName: 'drop'
+    downloadPath: '$(System.ArtifactsDirectory)'
+
+- task: AzureFunctionApp@1
+  inputs:
+    azureSubscription: 'Free Trial(72691d6b-a80a-4854-8670-a03cd024f434)'
+    appType: 'functionAppLinux'
+    appName: 'weather-app_new'
+    package: '$(System.ArtifactsDirectory)/**/*.zip'
+    runtimeStack: 'PYTHON|3.10'
