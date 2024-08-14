@@ -27,6 +27,10 @@ SECRET_KEY = 'django-insecure-#3ki--2szz$dz1h&2jwd5q*)teu^c6o&d%8&1cn0$jb6go9bj5
 DEBUG = True
 
 ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['rohit-weatherappci.azurewebsites.net/','https://rohit-weatherappci.azurewebsites.net/']
+
+
+
 
 
 # Application definition
