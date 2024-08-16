@@ -20,6 +20,38 @@
         h1 {
             color: #1e90ff;
         }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #e0f7fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+        header {
+            width: 100%;
+            padding: 20px 0;
+            background-color: #1e90ff;
+            color: #fff;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+        }
+        header h1 {
+            font-size: 48px;
+            margin: 0;
+            letter-spacing: 2px;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
         .container {
             width: 100%;
             max-width: 600px;
@@ -61,9 +93,32 @@
             color: #ff4500;
             font-size: 18px;
         }
+        footer {
+            margin-top: auto;
+            padding: 10px 0;
+            background-color: #1e90ff;
+            color: #fff;
+            width: 100%;
+            text-align: center;
+        }
+        footer p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
+    <header>
+        <h1>CheckWeather</h1>
+    </header>
     <div class="container">
         <h1>Check Weather</h1>
         <form id="weather-form">
@@ -83,6 +138,12 @@
         </div>
     </div>
 
+    <footer>
+        <p>Developed by Rohit Namdev</p>
+        <p>&copy; 2024 Weather App. All Rights Reserved.</p>
+        <p><a href="mailto:rohitnamdev876@gmail.com">Contact Developer</a></p>
+    </footer>
+
     <script>
         document.getElementById('weather-form').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -92,5 +153,6 @@
             }
         });
     </script>
+
 </body>
 </html>
