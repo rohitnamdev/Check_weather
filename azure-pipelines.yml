@@ -1,0 +1,43 @@
+pool:
+  name: Azure Pipelines
+
+steps:
+- task: UsePythonVersion@0
+  displayName: 'Use Python 3.10'
+  inputs:
+    versionSpec: '3.10'
+
+- script: |
+    python -m venv venv
+    source venv/bin/activate
+    pip install --upgrade pip
+    pip install -r requirements.txt
+  displayName: 'Install Dependencies'
+  env:
+    VIRTUAL_ENV: venv
+
+- script: |
+    source venv/bin/activate
+    python manage.py collectstatic --noinput
+  displayName: 'Collect Static Files'
+  env:
+    VIRTUAL_ENV: venv
+
+- script: |
+    zip -r weatherApp.zip . -x "*.git*" -x "*.venv*" -x "__pycache__/*"
+  displayName: 'Create ZIP Archive'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(Build.SourcesDirectory)/weatherApp.zip'
+
+- task: AzureWebApp@1
+  displayName: 'Azure Web App Deploy: weatherCheck'
+  inputs:
+    azureSubscription: 'Free Trial(72691d6b-a80a-4854-8670-a03cd024f434)'
+    appType: webAppLinux
+    appName: 'weatherCheck'
+    package: '$(Build.SourcesDirectory)/weatherApp.zip'
+    runtimeStack: 'PYTHON|3.10'
+    startUpCommand: 'gunicorn --workers 3 --bind 0.0.0.0:8000 weather_project.wsgi'
