@@ -38,11 +38,12 @@ steps:
       print('##vso[task.setvariable variable=projectRoot]{}'.format(project_location))
 
 - script: |
-    python -m venv venv  # Create a virtual environment
-    source venv/bin/activate  # Activate the virtual environment
+    python -m venv venv  # Create a virtual environment in the default location
+    source ./venv/bin/activate  # Activate the virtual environment
     pip install --upgrade pip  # Upgrade pip
     pip install -r requirements.txt  # Install project dependencies
-  displayName: 'Install prerequisites'
+  displayName: 'Install dependencies'
+  workingDirectory: $(System.DefaultWorkingDirectory)
 
 # Step 4: Collect static files
 - script: |
