@@ -7,7 +7,7 @@ def weather_view(request):
 
     if 'city' in request.GET:
         city = request.GET['city']
-        api_key = '75ac5818fb4e46fe9ff100822240708'
+        api_key = 'Add_your_API_key'
         url = f'http://api.weatherapi.com/v1/current.json?key={api_key}&q={city}&aqi=no'
 
         try:
